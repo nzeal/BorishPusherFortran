@@ -1,0 +1,5 @@
+&test_NML
+t1e%x = 2.,
+t1e%string='gfortran',
+answer=42
+/
