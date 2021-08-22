@@ -119,8 +119,8 @@ do i = 2, Nt
    uy_min = uy + qom * Ey * dt/2
    uz_min = uz + qom * Ez * dt/2
 
-   tx = 0
-   ty = 0
+   tx = - (qom*(1/c))* Bx * dt/(2*g)
+   ty = - (qom*(1/c))* By * dt/(2*g)
    tz = - (qom*(1/c))* Bz * dt/(2*g)
    t2 = (tx**2 + ty**2 + tz**2)
 
@@ -128,17 +128,17 @@ do i = 2, Nt
    sy = 2*ty/(1+t2)
    sz = 2*tz/(1+t2)
 
-   !Rotate the result with half magnetic impulse
+   !--Rotate the result with half magnetic impulse
    ux_pr = ux_min + (uy_min*tz - uz_min*ty)
    uy_pr = uy_min - (ux_min*tz - uz_min*tx)
    uz_pr = uz_min + (ux_min*ty - uy_min*tx)
 
-   !Rotate the result with full magnetic impulse
+   !--Rotate the result with full magnetic impulse
    ux_plus = ux_min + (uy_min*sz - uz_min*sy)
    uy_plus = uy_min - (ux_min*sz - uz_min*sx)
    uz_plus = uz_min + (ux_min*sy - uy_min*sx)
 
-   !Add remaining electric impulse
+   !---Add remaining electric impulse
    ux = ux_plus + qom * Ex * dt/2
    uy = uy_plus + qom * Ey * dt/2
    uz = uz_plus + qom * Ez * dt/2
